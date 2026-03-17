@@ -1,18 +1,8 @@
 # Unit 1 - Introduction to Agents
 
-Status: In progress
-Pinned: No
-Created time: March 17, 2026 1:22 PM
-Projects: HuggingFace AI Agent (https://www.notion.so/HuggingFace-AI-Agent-326dfdb107c680859a4bcfd7b43f71dc?pvs=21)
-Archive: No
-Settings: comnamcangu (https://www.notion.so/comnamcangu-2eddfdb107c6811d9848cffa963de89c?pvs=21)
-Insights: Insights (https://www.notion.so/Insights-2eddfdb107c6818fb904dc611a7e9805?pvs=21)
-Total EXP: 0
-XP: 💎 +0 XP
+![image.png](images/image.png)
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image.png)
-
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%201.png)
+![image.png](images/image%201.png)
 
 # 1. What is an Agent?
 
@@ -46,7 +36,7 @@ XP: 💎 +0 XP
 - **The Illusion of Memory:** While chat interfaces make it seem like models remember the conversation, they actually do not. Every time you interact, all previous messages are concatenated into a single, long prompt before being fed to the model.
 - **System Messages (System Prompts):** These are persistent instructions that define how the model should behave. For AI Agents, the system message is extremely important because it provides the model with information about available tools, instructions on how to format actions, and guidelines on how to segment its thought process.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%202.png)
+![image.png](images/image%202.png)
 
 - **User and Assistant Conversations:** These are the alternating messages between the human and the AI. Keeping this history helps maintain context for multi-turn conversations.
 - **Special Tokens:** These are specific markers used by models to delimit where a user or assistant turn starts and ends, such as the End Of Sequence (EOS) token. Because different models (like Llama 3, GPT-4, or SmolLM2) use different special tokens, the formats can vary significantly between providers.
@@ -57,7 +47,7 @@ XP: 💎 +0 XP
 
 Chat templates act as the **bridge between conversational messages and the specific formatting requirements of your chosen Large Language Model (LLM)**.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%203.png)
+![image.png](images/image%203.png)
 
 Here is a more specific breakdown of how they work and why they are necessary:
 
@@ -71,7 +61,7 @@ Here is a more specific breakdown of how they work and why they are necessary:
 
 - **What are AI Tools?:** A tool is a function given to a Large Language Model (LLM) that fulfills a clear objective. Tools are essential because they give the LLM extra capabilities beyond its static training data, allowing it to perform tasks like math calculations, execute code, or fetch up-to-date information via web searches and APIs.
     
-    ![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%204.png)
+    ![image.png](images/image%204.png)
     
 - **Core Components of a Tool:** To be effective, a tool must contain a clear textual description of what it does, a callable function (the actual code that performs the action), specific arguments with their data types, and optionally, defined outputs.
 - **How Tools Work:** LLMs cannot actually execute code or call APIs themselves; they only generate text. When you "give" a tool to an LLM, you are actually just describing the tool and its required inputs in the **system prompt**. When the LLM decides the tool is needed, it generates a text-based command (e.g., `call weather_tool('Paris')`). The **Agent** then reads this text, executes the tool on the LLM's behalf, and feeds the resulting data back to the LLM as a new message.
@@ -92,13 +82,13 @@ print(calculator.to_string())
 
 The **Thought-Action-Observation cycle** is the core workflow that defines how AI agents operate and solve complex tasks. You can think of this cycle as a `while loop` in programming: the agent continuously loops through these three steps until its user-defined objective is fully completed.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%205.png)
+![image.png](images/image%205.png)
 
 In many Agent frameworks, **the rules and guidelines are embedded directly into the system prompt**, ensuring that every cycle adheres to a defined logic.
 
 In a simplified version, our system prompt may look like this:
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%206.png)
+![image.png](images/image%206.png)
 
 Here is a breakdown of the three core components:
 
@@ -120,18 +110,18 @@ The guidelines for this cycle are usually embedded directly into the agent's sys
 
 - **What are Thoughts?:** Thoughts represent the agent's internal reasoning and planning processes. By acting as an "inner monologue" within the prompt, thoughts help the agent analyze information, break down complex problems into manageable steps, reflect on past experiences, and adjust its plans based on new observations.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%207.png)
+![image.png](images/image%207.png)
 
 - **Types of Thoughts:** An agent's internal reasoning can take many forms, including planning, analysis, decision making, problem-solving, self-reflection, and prioritization.
 - **Chain-of-Thought (CoT) Prompting:** This is a prompting technique that guides a model to think through a problem step-by-step before producing a final answer, usually initiated by the phrase *"Let's think step by step"*. CoT is highly effective for logical or mathematical tasks, but it relies purely on internal reasoning **without interacting with external tools**.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%208.png)
+![image.png](images/image%208.png)
 
 - **The ReAct Approach (Reasoning + Acting):** ReAct takes CoT a step further by combining step-by-step reasoning with real-world actions. It prompts the model to interleave its thoughts with actions (tool usage) and observations. While CoT is best for internal logic, ReAct is essential for information-seeking and dynamic, multi-step tasks that require external data.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%209.png)
+![image.png](images/image%209.png)
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%2010.png)
+![image.png](images/image%2010.png)
 
 # 7. **Actions: Enabling the Agent to Engage with Its Environment**.
 
@@ -156,7 +146,7 @@ Action :
 
 - **Code Agents:** Using code to define actions offers several benefits over JSON, including greater expressiveness (the ability to use loops, conditionals, and nested logic), modularity, easier debugging, and direct integration with external libraries. However, executing LLM-generated code poses security risks, which is why it is recommended to use frameworks with built-in safeguards, such as `smolagents`.
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%2011.png)
+![image.png](images/image%2011.png)
 
 ```python
 # Code Agent Example: Retrieve Weather Information
@@ -185,7 +175,7 @@ print(final_answer)
     3. **Adapts its Strategy:** It uses this updated context to refine its subsequent thoughts and decide on the next best action.
 - **Types of Observations:**
 
-![image.png](Unit%201%20-%20Introduction%20to%20Agents/image%2012.png)
+![image.png](images/image%2012.png)
 
 - **How the Framework Handles It:** The mechanics behind this are straightforward. After the agent decides on an action, the framework parses the action to identify the function and arguments, executes that function, and then appends the exact result directly into the prompt as an "Observation". This iterative feedback loop ensures the agent constantly learns and adjusts based on real-world outcomes to reach its goal.
 
