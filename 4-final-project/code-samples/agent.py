@@ -84,7 +84,46 @@ def web_search(query: str) -> str:
     return {"web_results": formatted_search_docs}
 
 
-tools = [add, divide, multiply, subtract, modulus, web_search]
+@tool
+def wiki_search(query: str) -> str:
+    """Search Wikipedia for a query and return maximum 2 results.
+    Args:
+        query: The search query."""
+    search_docs = WikipediaLoader(query=query, load_max_docs=2).load()
+    formatted_search_docs = "\n\n---\n\n".join(
+        [
+            f'<Document source="{doc.metadata["source"]}" page="{doc.metadata.get("page", "")}"/>\n{doc.page_content}\n</Document>'
+            for doc in search_docs
+        ]
+    )
+    return {"wiki_results": formatted_search_docs}
+
+
+@tool
+def arxiv_search(query: str) -> str:
+    """Search Arxiv for a query and return maximum 3 result.
+    Args:
+        query: The search query."""
+    search_docs = ArxivLoader(query=query, load_max_docs=3).load()
+    formatted_search_docs = "\n\n---\n\n".join(
+        [
+            f'<Document source="{doc.metadata["source"]}" page="{doc.metadata.get("page", "")}"/>\n{doc.page_content[:1000]}\n</Document>'
+            for doc in search_docs
+        ]
+    )
+    return {"arxiv_results": formatted_search_docs}
+
+
+tools = [
+    add,
+    divide,
+    multiply,
+    subtract,
+    modulus,
+    arxiv_search,
+    wiki_search,
+    web_search,
+]
 
 
 def build_agent():
