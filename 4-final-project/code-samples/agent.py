@@ -1,4 +1,5 @@
 import os
+import cmath
 from langgraph.graph import START, END, StateGraph, MessagesState
 from langgraph.prebuilt import tools_condition
 from langgraph.prebuilt import ToolNode
@@ -69,6 +70,29 @@ def modulus(a: int, b: int) -> int:
 
 
 @tool
+def power(a: float, b: float) -> float:
+    """
+    Get the power of two numbers.
+    Args:
+        a (float): the first number
+        b (float): the second number
+    """
+    return a**b
+
+
+@tool
+def square_root(a: float) -> float | complex:
+    """
+    Get the square root of a number.
+    Args:
+        a (float): the number to get the square root of
+    """
+    if a >= 0:
+        return a**0.5
+    return cmath.sqrt(a)
+
+
+@tool
 def web_search(query: str) -> str:
     """Search Tavily for a query and return maximum 3 results.
 
@@ -120,6 +144,8 @@ tools = [
     multiply,
     subtract,
     modulus,
+    square_root,
+    power,
     arxiv_search,
     wiki_search,
     web_search,
